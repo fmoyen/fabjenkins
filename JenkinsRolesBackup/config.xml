@@ -36,7 +36,9 @@
       <command>#!/bin/bash
 pwd
 echo &quot;Jenkins jobs config.xml files&quot;
-ls -la $HOME/.jenkins/jobs/*/config.xml</command>
+ls -la $HOME/.jenkins/jobs/*/config.xml
+
+echo Fab</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
