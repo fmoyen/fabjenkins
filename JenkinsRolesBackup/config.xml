@@ -52,7 +52,7 @@
 JobsDir=&quot;$HOME/.jenkins/jobs&quot;
 GitRepo=$PWD
 
-git checkout master
+git checkout $BRANCH
 
 echo
 echo &quot;Jenkins jobs config $JobsDir&quot;
