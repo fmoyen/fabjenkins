@@ -34,11 +34,39 @@
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-pwd
-echo &quot;Jenkins jobs config.xml files&quot;
-ls -la $HOME/.jenkins/jobs/*/config.xml
 
-echo Fab</command>
+JobsDir=&quot;$HOME/.jenkins/jobs&quot;
+GitRepo=$PWD
+
+git checkout master
+
+echo
+echo &quot;Jenkins jobs config $JobsDir&quot;
+ls -la $JobsDir/*/config.xml
+echo
+echo &quot;Git repository $GitRepo&quot;
+ls -la $GitRepo/*/config.xml
+
+echo
+echo &quot;--&gt; Copy jenkins jobs config.xml files to git repository&quot;
+for i in $(ls -d $JobsDir/*)
+do
+  dir=$(basename $i)
+  echo $dir
+  mkdir -p $GitRepo/$dir
+  cp --preserve=all $i/config.xml $GitRepo/$dir
+done
+
+echo
+echo &quot;--&gt; Commit&quot;
+cd $GitRepo
+git commit -a --dry-run --porcelain &gt; $HOME/msg.txt
+git commit -a --file=$HOME/msg.txt
+
+echo
+echo &quot;--&gt; Push&quot;
+git push
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
