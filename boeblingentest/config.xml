@@ -85,8 +85,8 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-echo &quot;marque= $marque&quot;
-echo &quot;modele= $modele&quot;
+echo &quot;marque=$marque&quot;
+echo &quot;modele=$modele&quot;
 
 if [ $marque = &quot;indian&quot; ] &amp;&amp; [ $modele = &quot;chieftain&quot; ]
 then
